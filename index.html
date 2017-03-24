@@ -1,0 +1,31 @@
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>Simon Says</header>
+    <div id='parent'>
+        <div class='top-level'>
+            <input type='submit' value='Start'></input>
+            <div id='count'>Count:
+                <div id='count-tally'></div>
+            </div>
+        </div>
+
+        <div id='game' class='top-level'>
+            <div id='green' class='dot'></div>
+            <div id='red' class='dot'></div>
+            <div id='yellow' class='dot'></div>
+            <div id='blue' class='dot'></div>
+        </div>
+
+        <div class='top-level'>
+            <input type='submit' value='Strict Mode'></input>
+            <input type='submit' value='Reset'></input>
+        </div>
+    </div>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+</body>
+</html>
