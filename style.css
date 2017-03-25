@@ -70,28 +70,28 @@ button:hover {
     vertical-align: middle;
 }
 
-#green {
+.green {
     background-color: #4abc42;
 }
-#red {
+.red {
     background-color: #a00000;
 }
-#yellow {
+.yellow {
     background-color: #edc607;
 }
-#blue {
-    background-color: #3f99ff;
+.blue {
+    background-color: #1c54af;
 }
 
-#green.selected {
+.green.selected {
     background-color: #64ff59;
 }
-#red.selected {
+.red.selected {
     background-color: #ff2828;
 }
-#yellow.selected {
+.yellow.selected {
     background-color: #ffea0a;
 }
-#blue.selected {
-    background-color: #7ccdff;
+.blue.selected {
+    background-color: #4c90ff;
 }
