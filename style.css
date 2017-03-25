@@ -1,14 +1,10 @@
-body {
-    
-}
-
 header {
     font-family: 'Indie Flower', cursive;
     font-size: 48pt;
     text-align: center;
 }
 
-input[type=submit] {
+button {
     background-color: #fff;
     border: 1px solid #000;
     border-radius: 10px;
@@ -19,10 +15,18 @@ input[type=submit] {
     text-decoration: none;
     display: block;
     font-size: 16px;
+    outline: none;
 }
 
-div {
-    border: 0px solid #000;
+button:hover {
+    background-color: #000;
+    color: #fff;
+}
+
+.selected {
+    background-color: #000;
+    color: #fff;
+    /*pointer-events: none;*/
 }
 
 #parent {
@@ -54,11 +58,16 @@ div {
 }
 
 #count-tally {
-    width: 100px;
-    height: 75px;
+    width: 55px;
+    height: 40px;
     border-radius: 5px;
     margin: 10px auto;
+    padding: 15px;
     background-color: #3f0e0e;
+    font-family: 'VT323', monospace;
+    font-size: 25pt;
+    color: #e51c14;
+    vertical-align: middle;
 }
 
 #green {
@@ -72,4 +81,17 @@ div {
 }
 #blue {
     background-color: #3f99ff;
+}
+
+#green.selected {
+    background-color: #64ff59;
+}
+#red.selected {
+    background-color: #ff2828;
+}
+#yellow.selected {
+    background-color: #ffea0a;
+}
+#blue.selected {
+    background-color: #7ccdff;
 }

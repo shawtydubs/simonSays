@@ -1,13 +1,13 @@
 <html>
 <head>
-    <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower|VT323" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>Simon Says</header>
     <div id='parent'>
         <div class='top-level'>
-            <input type='submit' value='Start'></input>
+            <button id='start'>Start</button>
             <div id='count'>Count:
                 <div id='count-tally'></div>
             </div>
@@ -21,11 +21,12 @@
         </div>
 
         <div class='top-level'>
-            <input type='submit' value='Strict Mode'></input>
-            <input type='submit' value='Reset'></input>
+            <button>Strict Mode</button>
+            <button>Reset</button>
         </div>
     </div>
 
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <script src="simon.js"></script>
 </body>
 </html>
