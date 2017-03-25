@@ -46,9 +46,9 @@ function makeItBeep(colors) {
         setTimeout(function() {
             $(colors[i].name).removeClass('selected');
             if (++i < colors.length) {
-                setTimeout(beepBeep, 1000);
+                setTimeout(beepBeep, 500);
             }
-        }, 1000); 
+        }, 500); 
     })();
 }
 
