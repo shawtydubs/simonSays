@@ -15,7 +15,6 @@ $('button').click(function() {
 });
 
 $('#start').click(function() {
-    $('.dot').removeClass('no-click');
     $('#strict').addClass('no-click');
     startRound();
 });
@@ -63,6 +62,8 @@ function gameBeep() {
             $(gameColors[i].name).removeClass('selected');
             if (++i < gameColors.length) {
                 setTimeout(beepBeep, 500);
+            } else if (i == gameColors.length) {
+                resumeDots();
             }
         }, 500); 
     })();
