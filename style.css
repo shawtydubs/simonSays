@@ -32,6 +32,16 @@ button:hover {
     pointer-events: none;
 }
 
+.notification {
+    font-family: 'Indie Flower', cursive;
+    font-size: 24pt;
+    text-align: center;
+}
+
+.hidden {
+    display: none;
+}
+
 #parent {
     text-align: center;
 }

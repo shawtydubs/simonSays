@@ -73,20 +73,37 @@ function gameBeep() {
 function compareDots() {
     var i = playerDots.length - 1;
 
+    // Correct selection
     if (gameColors[i].name == playerDots[i].name) {
         console.log('Colors are the same!');
 
-        if (playerDots.length == gameColors.length) {
+        if (playerDots.length == gameColors.length && count < 5) {
             setTimeout(startRound, 1500);
+        } else if (playerDots.length == gameColors.length && count == 5) {
+            endGame();
         }
+    
+    // Wrong selection - not strict mode
     } else if (gameColors[i].name != playerDots[i].name && !strictMode) {
         setTimeout(function() {
-            new Audio('sounds/wrong_selection.mp3').play()}, 500);
+            $('#wrong-no-strict').removeClass('hidden');
+            new Audio('sounds/wrong_selection.mp3').play()
+        }, 500);
+        setTimeout(function() {
+            $('#wrong-no-strict').addClass('hidden');
+        }, 2000);
         console.log('Colors are different, replaying');
-        setTimeout(gameBeep, 1500);
+        setTimeout(gameBeep, 2500);
+    
+    // Wrong selection - strict mode
     } else {
         setTimeout(function() {
-            new Audio('sounds/end_game.mp3').play()}, 500);
+            $('#wrong-strict').removeClass('hidden');
+            new Audio('sounds/end_game.mp3').play();
+        }, 500);
+        setTimeout(function() {
+            $('#wrong-strict').addClass('hidden');
+        }, 2000);
         console.log('Colors are different, restarting');
         setTimeout(function() {
             resetGame();
@@ -99,6 +116,12 @@ function toggleStrict() {
     strictMode = strictMode ? false : true;
 }
 
+function endGame() {
+    $('#winner').removeClass('hidden');
+    $('.dot').addClass('no-click');
+    setTimeout(resetGame, 3000);
+}
+
 function resetGame() {
     console.log('Resetting game');
     gameColors = [];
@@ -106,4 +129,5 @@ function resetGame() {
     count = 0;
     updateCount();
     $('button').removeClass('selected').removeClass('no-click');
+    $('.notification').addClass('hidden');
 }
