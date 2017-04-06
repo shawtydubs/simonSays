@@ -77,9 +77,9 @@ function compareDots() {
     if (gameColors[i].name == playerDots[i].name) {
         console.log('Colors are the same!');
 
-        if (playerDots.length == gameColors.length && count < 5) {
+        if (playerDots.length == gameColors.length && count < 20) {
             setTimeout(startRound, 1500);
-        } else if (playerDots.length == gameColors.length && count == 5) {
+        } else if (playerDots.length == gameColors.length && count == 20) {
             endGame();
         }
     
