@@ -26,7 +26,10 @@ button:hover {
 .selected {
     background-color: #000;
     color: #fff;
-    /*pointer-events: none;*/
+}
+
+.no-click {
+    pointer-events: none;
 }
 
 #parent {

@@ -6,33 +6,34 @@ var colors = {
 }
 
 var count = 0;
+var strictMode = false;
 var gameColors = [];
 var playerDots = [];
 
-// For testing
-// var gameColors = [
-//     { name: '.green',  sound: 'sounds/green.mp3' },
-//     { name: '.red',    sound: 'sounds/red.mp3' },
-//     { name: '.yellow', sound: 'sounds/yellow.mp3' },
-//     { name: '.blue',   sound: 'sounds/blue.mp3' }
-// ];
-
-updateCount();
-
 $('button').click(function() {
-    $(this).addClass('selected');
+    $(this).addClass('selected').addClass('no-click');
 });
 
 $('#start').click(function() {
+    $('.dot').removeClass('no-click');
+    $('#strict').addClass('no-click');
     startRound();
+});
+
+$('#strict').click(function() {
+    toggleStrict();
+})
+
+$('#reset').click(function() {
+    resetGame();
 });
 
 $('.dot').click(function() {
     playerDots.push(colors[$(this).attr('id')]);
-    console.group('Player dots:');console.log(playerDots);console.groupEnd();
+    console.log('Player dots:', playerDots);
     playerBeep($(this).attr('id'));
     compareDots();
-})
+});
 
 function updateCount() {
     $('#count-tally').html(count);
@@ -40,14 +41,13 @@ function updateCount() {
 
 function startRound() {
     gameColors.push(colors[Math.floor(Math.random() * 4) + 1]);
-    console.group('Game colors:');console.log(gameColors);console.groupEnd();
+    console.log('Game colors:', gameColors);
     count++;
     updateCount();
     gameBeep();
 }
 
 function playerBeep(id) {
-    console.log('Player beep');
     $('#' + id).addClass('selected');
     new Audio(colors[id].sound).play();
     setTimeout(function() {
@@ -56,7 +56,6 @@ function playerBeep(id) {
 }
 
 function gameBeep() {
-    console.log('Starting game sequence');
     var i = 0;
     (function beepBeep() {
         $(gameColors[i].name).addClass('selected');
@@ -68,22 +67,43 @@ function gameBeep() {
             }
         }, 500); 
     })();
+    playerDots = [];
 }
 
 function compareDots() {
-    for (i = 0; i < playerDots.length; i++) {
-        if (gameColors[i].name == playerDots[i].name) {
-            console.log('Colors are the same!');
-        } else {
-            console.log('Colors are different');
+    var i = playerDots.length - 1;
+
+    if (gameColors[i].name == playerDots[i].name) {
+        console.log('Colors are the same!');
+
+        if (playerDots.length == gameColors.length) {
+            setTimeout(startRound, 1500);
         }
+    } else if (gameColors[i].name != playerDots[i].name && !strictMode) {
+        setTimeout(function() {
+            new Audio('sounds/wrong_selection.mp3').play()}, 500);
+        console.log('Colors are different, replaying');
+        setTimeout(gameBeep, 1500);
+    } else {
+        setTimeout(function() {
+            new Audio('sounds/end_game.mp3').play()}, 500);
+        console.log('Colors are different, restarting');
+        setTimeout(function() {
+            resetGame();
+            startRound();
+        }, 3000);
     }
-    startRound();
+}
+
+function toggleStrict() {
+    strictMode = strictMode ? false : true;
 }
 
 function resetGame() {
+    console.log('Resetting game');
     gameColors = [];
     playerDots = [];
     count = 0;
+    updateCount();
+    $('button').removeClass('selected').removeClass('no-click');
 }
-
