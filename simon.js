@@ -30,7 +30,6 @@ $('#reset').click(function() {
 
 $('.dot').click(function() {
     playerDots.push(colors[$(this).attr('id')]);
-    console.log('Player dots:', playerDots);
     playerBeep($(this).attr('id'));
     compareDots();
 });
@@ -41,7 +40,6 @@ function updateCount() {
 
 function startRound() {
     gameColors.push(colors[Math.floor(Math.random() * 4) + 1]);
-    console.log('Game colors:', gameColors);
     count++;
     updateCount();
     gameBeep();
@@ -56,6 +54,7 @@ function playerBeep(id) {
 }
 
 function gameBeep() {
+    pauseDots();
     var i = 0;
     (function beepBeep() {
         $(gameColors[i].name).addClass('selected');
@@ -116,9 +115,17 @@ function toggleStrict() {
     strictMode = strictMode ? false : true;
 }
 
+function pauseDots() {
+    $('.dot').addClass('no-click');
+}
+
+function resumeDots() {
+    $('.dot').removeClass('no-click');
+}
+
 function endGame() {
     $('#winner').removeClass('hidden');
-    $('.dot').addClass('no-click');
+    pauseDots();
     setTimeout(resetGame, 3000);
 }
 
